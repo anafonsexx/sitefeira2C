@@ -3,82 +3,563 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Óptica na Indústria - Inovação e Precisão</title>
+
+  <title>Óptica na Indústria | Tecnologia, Precisão e Inovação</title>
+
+  <meta
+    name="description"
+    content="Site educativo sobre a importância da óptica na indústria, incluindo lasers, sensores, visão computacional, inspeção e metrologia."
+  >
+
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 </head>
+
 <body>
 
-  <!-- BARRA DE ACESSIBILIDADE -->
-  <header role="banner">
-    <div class="accessibility-bar" aria-label="Ferramentas de Acessibilidade">
-      <button id="btn-increase-font" aria-label="Aumentar tamanho do texto">A+</button>
-      <button id="btn-decrease-font" aria-label="Diminuir tamanho do texto">A-</button>
-      <button id="btn-read-aloud" aria-label="Ler texto da página em voz alta">🔊 Ler Página</button>
-      <button id="btn-stop-read" aria-label="Parar leitura em voz alta">⏹️ Parar Leitura</button>
+  <!-- ACESSIBILIDADE -->
+  <div class="accessibility-bar" aria-label="Ferramentas de acessibilidade">
+
+    <div class="accessibility-title">
+      ♿ Acessibilidade
     </div>
-    
-    <div class="header-content">
-      <h1>Óptica na Indústria</h1>
-      <p>Acelerando a precisão, automação e controle de qualidade industrial.</p>
+
+    <div class="accessibility-buttons">
+
+      <button
+        id="btn-increase-font"
+        type="button"
+        aria-label="Aumentar tamanho da fonte"
+        title="Aumentar fonte"
+      >
+        A+
+      </button>
+
+      <button
+        id="btn-decrease-font"
+        type="button"
+        aria-label="Diminuir tamanho da fonte"
+        title="Diminuir fonte"
+      >
+        A-
+      </button>
+
+      <button
+        id="btn-read-aloud"
+        type="button"
+        aria-label="Iniciar leitura da página em voz alta"
+      >
+        🔊 Ler página
+      </button>
+
+      <button
+        id="btn-stop-read"
+        type="button"
+        aria-label="Parar leitura da página"
+      >
+        ■ Parar
+      </button>
+
     </div>
+  </div>
+
+
+  <!-- CABEÇALHO -->
+  <header>
+
+    <div class="hero">
+
+      <div class="hero-content">
+
+        <span class="tag">TECNOLOGIA • PRECISÃO • INOVAÇÃO</span>
+
+        <h1>Óptica na Indústria</h1>
+
+        <p>
+          Como a luz, os lasers, as câmeras e os sensores ópticos
+          estão transformando a indústria moderna.
+        </p>
+
+        <a href="#sobre" class="hero-button">
+          Conheça o tema ↓
+        </a>
+
+      </div>
+
+      <div class="hero-graphic" aria-hidden="true">
+
+        <div class="laser-circle">
+          <div class="laser-core"></div>
+        </div>
+
+        <div class="laser-line line-1"></div>
+        <div class="laser-line line-2"></div>
+        <div class="laser-line line-3"></div>
+
+      </div>
+
+    </div>
+
   </header>
 
+
   <main id="main-content">
-    <!-- SEÇÃO SOBRE O TEMA -->
-    <section class="info-section">
-      <h2>A Relevância da Óptica no Setor Industrial</h2>
-      <p>
-        A óptica industrial abrange o uso de lasers, metrologia óptica, sistemas de visão computacional e sensores de luz para otimizar processos de fabricação, garantir inspeções sem contato e aumentar a eficiência operacional.
-      </p>
-    </section>
 
-    <!-- ÁREA PARA MÍDIA / NOTBOOKLM -->
-    <section class="media-section">
-      <h2>Conteúdo & Apresentação</h2>
-      <p class="section-desc">Acesse abaixo o notebook interativo com materiais explicativos e análises detalhadas sobre a óptica industrial:</p>
-      
-      <div class="media-card">
-        <div class="media-icon">💡</div>
-        <div class="media-info">
-          <h3>Caderno Interativo no Google NotebookLM</h3>
-          <p>Consulte a documentação completa, resumos e áudios interativos preparados para este projeto.</p>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="section">
+
+      <div class="section-heading">
+        <span class="section-number">01</span>
+
+        <div>
+          <span class="small-title">ENTENDA O TEMA</span>
+          <h2>O que é a óptica na indústria?</h2>
         </div>
-        <a href="https://notebook.google.com/notebook/b0095d89-6b05-47f0-b0f9-583ec720d7d6" target="_blank" rel="noopener noreferrer" class="btn-media">
-          Abrir no NotebookLM ↗
-        </a>
       </div>
+
+      <div class="intro-text">
+
+        <p>
+          A óptica industrial é a aplicação dos princípios da luz e
+          da óptica em processos industriais. Ela utiliza tecnologias
+          como lasers, câmeras, sensores, lentes e sistemas de visão
+          para realizar medições, inspeções e controles com grande
+          precisão.
+        </p>
+
+        <p>
+          Essas tecnologias ajudam as empresas a identificar defeitos,
+          medir peças, controlar processos de fabricação e aumentar
+          a qualidade dos produtos.
+        </p>
+
+      </div>
+
     </section>
 
-    <!-- GALERIA DE IMAGENS -->
-    <section class="gallery-section">
-      <h2>Aplicações Práticas</h2>
-      <div class="image-grid">
-        <figure>
-          <img src="https://via.placeholder.com/400x250/00d2ff/ffffff?text=Metrologia+a+Laser" alt="Equipamento de metrologia a laser fazendo medição industrial">
-          <figcaption>Metrologia e medição a laser de alta precisão</figcaption>
-        </figure>
-        <figure>
-          <img src="https://via.placeholder.com/400x250/7000ff/ffffff?text=Visao+Computacional" alt="Câmera de visão computacional inspecionando peças em linha de montagem">
-          <figcaption>Sistemas de visão computacional para controle de qualidade</figcaption>
-        </figure>
+
+    <!-- APLICAÇÕES -->
+    <section class="section">
+
+      <div class="section-heading">
+        <span class="section-number">02</span>
+
+        <div>
+          <span class="small-title">APLICAÇÕES</span>
+          <h2>Onde a óptica é utilizada?</h2>
+        </div>
       </div>
+
+
+      <div class="cards">
+
+        <article class="info-card blue">
+
+          <div class="card-icon">◉</div>
+
+          <h3>Visão Computacional</h3>
+
+          <p>
+            Câmeras e sistemas ópticos analisam produtos
+            automaticamente, identificando falhas e diferenças
+            durante a fabricação.
+          </p>
+
+        </article>
+
+
+        <article class="info-card purple">
+
+          <div class="card-icon">⌁</div>
+
+          <h3>Lasers</h3>
+
+          <p>
+            Lasers podem ser utilizados para medição, corte,
+            soldagem, marcação e outras operações que exigem
+            precisão.
+          </p>
+
+        </article>
+
+
+        <article class="info-card cyan">
+
+          <div class="card-icon">⌖</div>
+
+          <h3>Metrologia Óptica</h3>
+
+          <p>
+            Sistemas ópticos permitem realizar medições sem contato,
+            verificando dimensões e características de componentes
+            industriais.
+          </p>
+
+        </article>
+
+
+        <article class="info-card orange">
+
+          <div class="card-icon">✦</div>
+
+          <h3>Controle de Qualidade</h3>
+
+          <p>
+            Sensores e câmeras podem detectar riscos, deformações,
+            peças incorretas e outros problemas na linha de produção.
+          </p>
+
+        </article>
+
+      </div>
+
     </section>
 
-    <!-- ÁREA COM LINK EXTERNO -->
-    <section class="links-section">
-      <h2>Saiba Mais</h2>
-      <p>Para se aprofundar nas tecnologias e pesquisas mais recentes sobre o tema, acesse os materiais de referência:</p>
-      <a href="https://www.osapublishing.org" target="_blank" rel="noopener noreferrer" class="external-link">
-        Artigos e Publicações sobre Óptica Aplicada (Optica Publishing Group) ↗
+
+    <!-- COMO FUNCIONA -->
+    <section class="section dark-section">
+
+      <div class="section-heading light-heading">
+        <span class="section-number">03</span>
+
+        <div>
+          <span class="small-title">TECNOLOGIA</span>
+          <h2>Como funciona?</h2>
+        </div>
+      </div>
+
+
+      <div class="process">
+
+        <div class="process-item">
+
+          <div class="process-number">1</div>
+
+          <h3>Emissão</h3>
+
+          <p>
+            Uma fonte de luz, como um LED ou laser, ilumina o objeto
+            que será analisado.
+          </p>
+
+        </div>
+
+
+        <div class="process-arrow">→</div>
+
+
+        <div class="process-item">
+
+          <div class="process-number">2</div>
+
+          <h3>Captura</h3>
+
+          <p>
+            Câmeras ou sensores capturam a luz refletida pelo objeto.
+          </p>
+
+        </div>
+
+
+        <div class="process-arrow">→</div>
+
+
+        <div class="process-item">
+
+          <div class="process-number">3</div>
+
+          <h3>Análise</h3>
+
+          <p>
+            Um computador interpreta as informações obtidas pelo
+            sistema óptico.
+          </p>
+
+        </div>
+
+
+        <div class="process-arrow">→</div>
+
+
+        <div class="process-item">
+
+          <div class="process-number">4</div>
+
+          <h3>Decisão</h3>
+
+          <p>
+            O sistema determina se o produto atende aos padrões
+            definidos pela indústria.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- VÍDEO -->
+    <section class="section">
+
+      <div class="section-heading">
+        <span class="section-number">04</span>
+
+        <div>
+          <span class="small-title">MATERIAL AUDIOVISUAL</span>
+          <h2>Vídeo sobre Óptica na Indústria</h2>
+        </div>
+      </div>
+
+      <p class="section-description">
+        Este espaço está preparado para receber um vídeo sobre
+        aplicações da óptica na indústria.
+      </p>
+
+
+      <div class="video-container">
+
+        <!--
+          PARA COLOCAR UM VÍDEO DO YOUTUBE:
+
+          1. Copie o endereço de incorporação do vídeo.
+          2. Substitua o iframe abaixo.
+
+          Exemplo:
+          <iframe
+            src="https://www.youtube.com/embed/ID_DO_VIDEO"
+            title="Vídeo sobre óptica industrial"
+            allowfullscreen>
+          </iframe>
+        -->
+
+        <div class="video-placeholder">
+
+          <div class="play-icon">▶</div>
+
+          <h3>Espaço reservado para o vídeo</h3>
+
+          <p>
+            Adicione aqui um vídeo sobre lasers, visão computacional,
+            sensores ou inspeção óptica industrial.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- GALERIA -->
+    <section class="section">
+
+      <div class="section-heading">
+        <span class="section-number">05</span>
+
+        <div>
+          <span class="small-title">GALERIA</span>
+          <h2>Imagens sobre o tema</h2>
+        </div>
+      </div>
+
+      <p class="section-description">
+        Espaço para apresentar imagens de equipamentos e aplicações
+        da óptica no ambiente industrial.
+      </p>
+
+
+      <div class="gallery">
+
+        <figure class="gallery-item">
+
+          <div class="image-placeholder image-1">
+            <span>LASER</span>
+          </div>
+
+          <figcaption>
+            Sistemas de medição e processamento utilizando laser.
+          </figcaption>
+
+        </figure>
+
+
+        <figure class="gallery-item">
+
+          <div class="image-placeholder image-2">
+            <span>VISÃO</span>
+          </div>
+
+          <figcaption>
+            Câmeras utilizadas em sistemas de visão computacional.
+          </figcaption>
+
+        </figure>
+
+
+        <figure class="gallery-item">
+
+          <div class="image-placeholder image-3">
+            <span>SENSORES</span>
+          </div>
+
+          <figcaption>
+            Sensores ópticos utilizados para automação industrial.
+          </figcaption>
+
+        </figure>
+
+
+        <figure class="gallery-item">
+
+          <div class="image-placeholder image-4">
+            <span>PRECISÃO</span>
+          </div>
+
+          <figcaption>
+            Tecnologias ópticas aplicadas ao controle de qualidade.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+      <p class="image-tip">
+        💡 Dica: você pode substituir estes espaços por imagens
+        reais colocando os arquivos dentro de uma pasta chamada
+        <strong>imagens</strong>.
+      </p>
+
+    </section>
+
+
+    <!-- BENEFÍCIOS -->
+    <section class="section">
+
+      <div class="section-heading">
+        <span class="section-number">06</span>
+
+        <div>
+          <span class="small-title">RESULTADOS</span>
+          <h2>Benefícios para a indústria</h2>
+        </div>
+      </div>
+
+
+      <div class="benefits">
+
+        <div class="benefit">
+          <span>01</span>
+          <div>
+            <h3>Maior precisão</h3>
+            <p>
+              Medições ópticas permitem analisar componentes
+              com alta precisão.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="benefit">
+          <span>02</span>
+          <div>
+            <h3>Mais velocidade</h3>
+            <p>
+              Inspeções automáticas podem acompanhar linhas de
+              produção em alta velocidade.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="benefit">
+          <span>03</span>
+          <div>
+            <h3>Menos desperdício</h3>
+            <p>
+              A identificação antecipada de problemas ajuda a
+              reduzir perdas durante a fabricação.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="benefit">
+          <span>04</span>
+          <div>
+            <h3>Automação</h3>
+            <p>
+              Sistemas ópticos podem trabalhar integrados a
+              máquinas e sistemas automatizados.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- LINK EXTERNO -->
+    <section class="external-section">
+
+      <div>
+
+        <span class="small-title">QUER SABER MAIS?</span>
+
+        <h2>Pesquise e aprofunde seus conhecimentos</h2>
+
+        <p>
+          Consulte uma fonte especializada para conhecer mais
+          aplicações, pesquisas e tecnologias relacionadas à óptica.
+        </p>
+
+      </div>
+
+
+      <a
+        href="https://www.optica.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="external-button"
+        aria-label="Abrir site da Optica em uma nova aba"
+      >
+        Acessar fonte externa ↗
       </a>
+
     </section>
+
+
   </main>
 
+
+  <!-- RODAPÉ -->
   <footer>
-    <p>&copy; 2026 Feira de Ciências - Projeto Óptica na Indústria.</p>
+
+    <div class="footer-content">
+
+      <h2>Óptica na Indústria</h2>
+
+      <p>
+        Tecnologia, luz e precisão transformando a indústria.
+      </p>
+
+      <p class="copyright">
+        © 2026 • Projeto Feira de Ciências
+      </p>
+
+    </div>
+
   </footer>
 
+
+  <!-- JAVASCRIPT -->
   <script src="script.js"></script>
+
 </body>
 </html>
