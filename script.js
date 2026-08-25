@@ -1,44 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // --- CONTROLE DE TAMANHO DE FONTE ---
-  let currentFontSize = 16;
-  const body = document.body;
+// --- LEITURA EM VOZ ALTA CORRIGIDA ---
+const btnRead = document.getElementById('btn-read-aloud');
+const btnStop = document.getElementById('btn-stop-read');
 
-  document.getElementById('btn-increase-font').addEventListener('click', () => {
-    if (currentFontSize < 24) {
-      currentFontSize += 2;
-      body.style.fontSize = `${currentFontSize}px`;
+if ('speechSynthesis' in window) {
+  btnRead.addEventListener('click', () => {
+    window.speechSynthesis.cancel(); // Para leituras travadas anteriores
+
+    // 1. Pega o texto e limpa emojis/caracteres especiais que travam a leitura
+    let textToRead = document.getElementById('main-content').innerText;
+    textToRead = textToRead.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); 
+    textToRead = textToRead.replace(/↗|🔊|⏹️|💡/g, ''); // Remove ícones específicos
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+
+    // 2. Procura obrigatoriamente por uma voz pt-BR do sistema
+    const voices = window.speechSynthesis.getVoices();
+    const ptBrVoice = voices.find(v => v.lang === 'pt-BR' || v.lang === 'pt_BR') 
+                   || voices.find(v => v.lang.startsWith('pt'));
+
+    if (ptBrVoice) {
+      utterance.voice = ptBrVoice;
     }
+
+    // 3. Ajustes de velocidade e idioma
+    utterance.lang = 'pt-BR';
+    utterance.rate = 0.9;  // Fala um pouco mais pausada e clara
+    utterance.pitch = 1.0; // Tom natural
+
+    window.speechSynthesis.speak(utterance);
   });
 
-  document.getElementById('btn-decrease-font').addEventListener('click', () => {
-    if (currentFontSize > 12) {
-      currentFontSize -= 2;
-      body.style.fontSize = `${currentFontSize}px`;
-    }
+  btnStop.addEventListener('click', () => {
+    window.speechSynthesis.cancel();
   });
-
-  // --- LEITURA EM VOZ ALTA (Web Speech API) ---
-  const btnRead = document.getElementById('btn-read-aloud');
-  const btnStop = document.getElementById('btn-stop-read');
-
-  if ('speechSynthesis' in window) {
-    btnRead.addEventListener('click', () => {
-      window.speechSynthesis.cancel(); // Cancela leituras anteriores
-
-      const textToRead = document.getElementById('main-content').innerText;
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = 'pt-BR';
-      utterance.rate = 1.0;
-
-      window.speechSynthesis.speak(utterance);
-    });
-
-    btnStop.addEventListener('click', () => {
-      window.speechSynthesis.cancel();
-    });
-  } else {
-    btnRead.style.display = 'none';
-    btnStop.style.display = 'none';
-    console.warn('Recurso de síntese de voz não suportado neste navegador.');
-  }
-});
+}
