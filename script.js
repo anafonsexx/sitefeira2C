@@ -1,40 +1,52 @@
-/* =========================================
-   ACESSIBILIDADE
-   ÓPTICA NA INDÚSTRIA
-========================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
   const body = document.body;
 
-  const btnIncrease = document.getElementById("btn-increase-font");
-  const btnDecrease = document.getElementById("btn-decrease-font");
+  const btnIncrease =
+    document.getElementById("btn-increase-font");
 
-  const btnRead = document.getElementById("btn-read-aloud");
-  const btnStop = document.getElementById("btn-stop-read");
+  const btnDecrease =
+    document.getElementById("btn-decrease-font");
+
+  const btnRead =
+    document.getElementById("btn-read-aloud");
+
+  const btnStop =
+    document.getElementById("btn-stop-read");
 
 
   /* =========================================
      TAMANHO DA FONTE
   ========================================= */
 
-  let fontSize = localStorage.getItem("fontSize");
+  const savedFontSize =
+    localStorage.getItem("fontSize");
 
-  if (fontSize === "large") {
+
+  if (savedFontSize === "large") {
+
     body.classList.add("font-large");
+
   }
 
-  if (fontSize === "small") {
+
+  if (savedFontSize === "small") {
+
     body.classList.add("font-small");
+
   }
 
 
   btnIncrease.addEventListener("click", () => {
 
     body.classList.remove("font-small");
+
     body.classList.add("font-large");
 
-    localStorage.setItem("fontSize", "large");
+    localStorage.setItem(
+      "fontSize",
+      "large"
+    );
 
   });
 
@@ -42,15 +54,19 @@ document.addEventListener("DOMContentLoaded", () => {
   btnDecrease.addEventListener("click", () => {
 
     body.classList.remove("font-large");
+
     body.classList.add("font-small");
 
-    localStorage.setItem("fontSize", "small");
+    localStorage.setItem(
+      "fontSize",
+      "small"
+    );
 
   });
 
 
   /* =========================================
-     LEITURA EM VOZ ALTA
+     VERIFICAR LEITURA
   ========================================= */
 
   if (!("speechSynthesis" in window)) {
@@ -59,51 +75,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnStop.disabled = true;
 
-    btnRead.textContent = "Leitura indisponível";
+    btnRead.textContent =
+      "Leitura indisponível";
 
     return;
   }
 
 
-  const speech = window.speechSynthesis;
+  const speech =
+    window.speechSynthesis;
 
 
-  /* -----------------------------------------
+  /* =========================================
      ENCONTRAR VOZ EM PORTUGUÊS
-  ----------------------------------------- */
+  ========================================= */
 
   function getPortugueseVoice() {
 
-    const voices = speech.getVoices();
+    const voices =
+      speech.getVoices();
 
     if (!voices.length) {
+
       return null;
     }
 
-    /*
-      Primeiro tenta encontrar português do Brasil.
-    */
 
-    let voice = voices.find((item) => {
+    let voice =
+      voices.find((item) => {
 
-      return item.lang &&
-        item.lang.toLowerCase() === "pt-br";
+        return item.lang &&
+          item.lang.toLowerCase() === "pt-br";
 
-    });
+      });
 
-
-    /*
-      Se não encontrar, procura qualquer português.
-    */
 
     if (!voice) {
 
-      voice = voices.find((item) => {
+      voice =
+        voices.find((item) => {
 
-        return item.lang &&
-          item.lang.toLowerCase().startsWith("pt");
+          return item.lang &&
+            item.lang
+              .toLowerCase()
+              .startsWith("pt");
 
-      });
+        });
 
     }
 
@@ -111,11 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return voice || null;
   }
 
-
-  /*
-    Alguns navegadores carregam as vozes
-    somente depois que a página abre.
-  */
 
   speech.onvoiceschanged = () => {
 
@@ -125,82 +137,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     LIMPAR TEXTO PARA A LEITURA
+     LIMPAR TEXTO
   ========================================= */
 
   function cleanText(text) {
 
     return text
 
-      // Remove emojis
       .replace(
         /[\u{1F300}-\u{1FAFF}]/gu,
         ""
       )
 
-      // Remove alguns símbolos gráficos
-      .replace(/[→←↑↓↗↘★☆✦✧⌖◉⌁]/g, "")
+      .replace(
+        /[→←↑↓↗↘★☆✦✧⌖◉⌁]/g,
+        ""
+      )
 
-      // Remove excesso de espaços
-      .replace(/\s+/g, " ")
+      .replace(
+        /\s+/g,
+        " "
+      )
 
-      // Remove espaços antes de pontuação
-      .replace(/\s+([,.!?;:])/g, "$1")
+      .replace(
+        /\s+([,.!?;:])/g,
+        "$1"
+      )
 
       .trim();
+
   }
 
 
   /* =========================================
-     DIVIDIR TEXTO EM PARTES
+     DIVIDIR TEXTO
   ========================================= */
 
-  function splitText(text, maxLength = 180) {
+  function splitText(
+    text,
+    maxLength = 180
+  ) {
 
-    const sentences = text.match(
-      /[^.!?]+[.!?]+|[^.!?]+$/g
-    );
+    const sentences =
+      text.match(
+        /[^.!?]+[.!?]+|[^.!?]+$/g
+      );
+
 
     if (!sentences) {
+
       return [text];
+
     }
+
 
     const parts = [];
 
     let current = "";
 
 
-    sentences.forEach((sentence) => {
+    sentences.forEach(
+      (sentence) => {
 
-      const cleanSentence = sentence.trim();
-
-      if (!cleanSentence) {
-        return;
-      }
+        const cleanSentence =
+          sentence.trim();
 
 
-      if (
-        current.length + cleanSentence.length
-        <= maxLength
-      ) {
+        if (!cleanSentence) {
 
-        current += " " + cleanSentence;
-
-      } else {
-
-        if (current.trim()) {
-          parts.push(current.trim());
+          return;
         }
 
-        current = cleanSentence;
+
+        if (
+          current.length +
+          cleanSentence.length
+          <= maxLength
+        ) {
+
+          current +=
+            " " + cleanSentence;
+
+        } else {
+
+          if (current.trim()) {
+
+            parts.push(
+              current.trim()
+            );
+
+          }
+
+          current =
+            cleanSentence;
+
+        }
 
       }
-
-    });
+    );
 
 
     if (current.trim()) {
-      parts.push(current.trim());
+
+      parts.push(
+        current.trim()
+      );
+
     }
 
 
@@ -215,148 +257,179 @@ document.addEventListener("DOMContentLoaded", () => {
   let isReading = false;
 
 
-  btnRead.addEventListener("click", () => {
+  btnRead.addEventListener(
+    "click",
+    () => {
 
-    /*
-      Cancela qualquer leitura anterior.
-    */
-
-    speech.cancel();
-
-    const main = document.getElementById("main-content");
-
-    if (!main) {
-      return;
-    }
+      speech.cancel();
 
 
-    let text = main.innerText;
-
-    text = cleanText(text);
-
-
-    if (!text) {
-
-      alert(
-        "Não foi encontrado texto para realizar a leitura."
-      );
-
-      return;
-    }
+      const main =
+        document.getElementById(
+          "main-content"
+        );
 
 
-    const parts = splitText(text);
-
-
-    const voice = getPortugueseVoice();
-
-
-    let index = 0;
-
-    isReading = true;
-
-
-    btnRead.textContent = "🔊 Lendo...";
-
-
-    function speakNext() {
-
-      if (!isReading) {
-        return;
-      }
-
-
-      if (index >= parts.length) {
-
-        isReading = false;
-
-        btnRead.textContent = "🔊 Ler página";
+      if (!main) {
 
         return;
       }
 
 
-      const utterance =
-        new SpeechSynthesisUtterance(parts[index]);
+      let text =
+        main.innerText;
 
 
-      utterance.lang = "pt-BR";
-
-      /*
-        Velocidade confortável para apresentação.
-      */
-
-      utterance.rate = 0.92;
-
-      /*
-        Tom neutro para funcionar bem
-        com diferentes vozes.
-      */
-
-      utterance.pitch = 1;
+      text =
+        cleanText(text);
 
 
-      if (voice) {
-        utterance.voice = voice;
+      if (!text) {
+
+        alert(
+          "Não foi encontrado texto para realizar a leitura."
+        );
+
+        return;
       }
 
 
-      utterance.onend = () => {
-
-        index++;
-
-        /*
-          Pequena pausa entre as partes.
-        */
-
-        setTimeout(speakNext, 80);
-
-      };
+      const parts =
+        splitText(text);
 
 
-      utterance.onerror = () => {
+      const voice =
+        getPortugueseVoice();
 
-        index++;
 
-        if (isReading) {
-          setTimeout(speakNext, 80);
+      let index = 0;
+
+      isReading = true;
+
+
+      btnRead.textContent =
+        "🔊 Lendo...";
+
+
+      function speakNext() {
+
+        if (!isReading) {
+
+          return;
         }
 
-      };
+
+        if (
+          index >= parts.length
+        ) {
+
+          isReading = false;
+
+          btnRead.textContent =
+            "🔊 Ler página";
+
+          return;
+        }
 
 
-      speech.speak(utterance);
+        const utterance =
+          new SpeechSynthesisUtterance(
+            parts[index]
+          );
+
+
+        utterance.lang =
+          "pt-BR";
+
+
+        utterance.rate =
+          0.92;
+
+
+        utterance.pitch =
+          1;
+
+
+        if (voice) {
+
+          utterance.voice =
+            voice;
+        }
+
+
+        utterance.onend =
+          () => {
+
+            index++;
+
+            setTimeout(
+              speakNext,
+              80
+            );
+
+          };
+
+
+        utterance.onerror =
+          () => {
+
+            index++;
+
+            if (isReading) {
+
+              setTimeout(
+                speakNext,
+                80
+              );
+
+            }
+
+          };
+
+
+        speech.speak(
+          utterance
+        );
+
+      }
+
+
+      speakNext();
+
     }
-
-
-    speakNext();
-
-  });
+  );
 
 
   /* =========================================
      PARAR LEITURA
   ========================================= */
 
-  btnStop.addEventListener("click", () => {
+  btnStop.addEventListener(
+    "click",
+    () => {
 
-    isReading = false;
+      isReading = false;
 
-    speech.cancel();
+      speech.cancel();
 
-    btnRead.textContent = "🔊 Ler página";
+      btnRead.textContent =
+        "🔊 Ler página";
 
-  });
+    }
+  );
 
 
   /* =========================================
-     PARAR AO SAIR / FECHAR A PÁGINA
+     AO SAIR DA PÁGINA
   ========================================= */
 
-  window.addEventListener("beforeunload", () => {
+  window.addEventListener(
+    "beforeunload",
+    () => {
 
-    speech.cancel();
+      speech.cancel();
 
-  });
+    }
+  );
 
 });
